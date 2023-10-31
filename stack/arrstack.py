@@ -28,20 +28,20 @@ class ArrStack:
             self._top += 1
             self._items[self._top] = item
         else:
-            print("[push]the stack is full")
+            raise IndexError("the stack is full")
 
     def pop(self):
         if not self.isEmpty():
             self._top -= 1
             return self._items[self._top + 1]
         else:
-            print("[pop]the stack is empty")
+            raise IndexError("the stack is empty")
 
     def peek(self):
         if not self.isEmpty():
             return self._items[self._top]
         else:
-            print("[peek]the stack is empty")
+            raise IndexError("the stack is empty")
 
 
 if __name__ == "__main__":
