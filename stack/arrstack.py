@@ -2,7 +2,6 @@
 ADT
 
 top
-
 1. push
 2. pop
 3. isEmpty

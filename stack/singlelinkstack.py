@@ -12,16 +12,20 @@ top (=peek)
 import random
 
 
+class Empty(Exception):
+    pass
+
+
 class LinkedStack:
     class _Node:
-        __slots__ = "_element", "_next"
+        __slots__ = "element", "next"
 
         def __init__(self, element, next):
-            self._element = element
-            self._next = next
+            self.element = element
+            self.next = next
 
     def __init__(self):
-        self._head = None
+        self._head = None  # this represents top of the stack
         self._size = 0
 
     def __len__(self):
@@ -34,18 +38,20 @@ class LinkedStack:
         self._head = self._Node(element, self._head)
         self._size += 1
 
+    def top(self):
+        if self.isEmpty():
+            raise (Empty("Stack is empty"))
+        return self._head.element
+
     def pop(self):
         if self.isEmpty():
-            raise IndexError("Stack is empty")
-        tmp = self._head._element
-        self._head = self._head._next
-        self._size -= 1
-        return tmp
+            raise (Empty("Stack is empty"))
 
-    def peek(self):
-        if self.isEmpty():
-            raise IndexError("Stacak is empty")
-        return self._head._element
+        ret = self._head.element
+        self._head = self._head.next
+        self._size -= 1
+
+        return ret
 
 
 if __name__ == "__main__":
@@ -57,10 +63,8 @@ if __name__ == "__main__":
     for i in range(12):
         lst.push(random.randint(0, 100))
 
-    print(len(lst))
-
     for i in range(12):
-        print(lst.peek())
+        print(lst.top())
 
     print(lst.isEmpty())
     print(len(lst))
