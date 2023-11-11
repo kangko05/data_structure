@@ -1,13 +1,15 @@
 """
 ADT
 
-top = tail
+top = head
 
 isEmpty
 push
 pop
 top (=peek)
 
+all the operations are O(1)
+=> because the removal of data only occurs at the top(head)
 """
 import random
 
